@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/audio_player_widget.dart';
 import '../widgets/animated_card.dart';
-import '../widgets/interactive_graphics_demo.dart';
-
+import '../widgets/interactive_graphics_demo.dart' hide AudioPlayerWidget;
+import '../widgets/video_player_widget.dart';
 class ElementsScreen extends StatefulWidget {
   const ElementsScreen({super.key});
 
@@ -159,6 +159,7 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
   }
 
   Widget _buildVideoTab() {
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -185,6 +186,10 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // Around line 180-200, replace the Container with gradient with:
+                  VideoPlayerWidget(
+                    videoPath: 'assets/videos/sample.mp4',
+                  ),
                   Icon(Icons.play_circle_outline, size: 60, color: Colors.white),
                   const SizedBox(height: 10),
                   const Text(
@@ -193,6 +198,7 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
                   ),
                   const SizedBox(height: 5),
                   const Text(
+
                     'Place video file in assets/videos/',
                     style: TextStyle(color: Colors.white70, fontSize: 12),
                   ),

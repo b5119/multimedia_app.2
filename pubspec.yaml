@@ -16,7 +16,8 @@ dependencies:
 
   # Video playback
   video_player: ^2.8.1
-
+  #audio
+  just_audio: ^0.9.36 
   # Animations
   animated_text_kit: ^4.2.2
   lottie: ^2.7.0
