@@ -114,15 +114,14 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
           const SizedBox(height: 20),
 
           const HelpHint(
-            message: '📖 Scroll down to explore different text styles and formatting',
+            message: '📖 Scroll down to explore different text styles',
             icon: Icons.arrow_downward,
           ),
 
           _buildSectionTitle('Overview'),
           _buildContentText(
               'Text is the most fundamental element of multimedia. It conveys information, '
-                  'provides context, and guides user interaction. Text can be static or dynamic, '
-                  'formatted in various fonts, sizes, colors, and styles.'
+                  'provides context, and guides user interaction.'
           ),
 
           const SizedBox(height: 20),
@@ -135,33 +134,15 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
 
           const SizedBox(height: 20),
 
-          _buildSectionTitle('Text Examples'),
           _buildExampleBox(
-            'Different Text Styles',
+            'Example Text Styles',
             [
-              'Normal text for body content',
-              'Bold text for emphasis',
-              'Italic text for notes',
-              'UPPERCASE FOR HEADINGS',
-              'Colored text for highlights',
+              'Normal text',
+              'Bold text',
+              'Italic text',
+              'UPPERCASE TEXT',
+              'Colored Text',
             ],
-          ),
-
-          const SizedBox(height: 20),
-
-          _buildSectionTitle('Applications'),
-          _buildContentText(
-              'Text is used in menus, captions, subtitles, instructions, hyperlinks, and informational displays. '
-                  'Good typography improves readability and user experience.'
-          ),
-
-          const SizedBox(height: 20),
-
-          _buildInfoCard(
-            icon: Icons.lightbulb_outline,
-            title: 'Typography Tip',
-            content: 'Use proper font hierarchy: large headings, medium subheadings, and comfortable body text sizes.',
-            color: Colors.blue.shade700,
           ),
         ],
       ),
@@ -183,7 +164,7 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
           const SizedBox(height: 20),
 
           const HelpHint(
-            message: '🎧 Press the play button below to hear audio narration',
+            message: '🎧 Press play to hear audio narration',
             icon: Icons.headphones,
           ),
 
@@ -196,8 +177,8 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
 
           _buildSectionTitle('What is Audio?'),
           _buildContentText(
-              'Audio refers to sound content in digital form. It includes music, speech, sound effects, '
-                  'and ambient noise. Audio enhances user experience by providing another sensory dimension.'
+              'Audio refers to sound content in digital form. It includes music, speech, '
+                  'and sound effects that enhance user experience.'
           ),
 
           const SizedBox(height: 20),
@@ -205,29 +186,19 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
           _buildSectionTitle('Audio Types'),
           _buildBulletPoint('Speech/Narration - Human voice recordings'),
           _buildBulletPoint('Music - Background scores and soundtracks'),
-          _buildBulletPoint('Sound Effects - Environmental and action sounds'),
-          _buildBulletPoint('Synthesized Audio - Computer-generated sounds'),
+          _buildBulletPoint('Sound Effects - Environmental sounds'),
 
           const SizedBox(height: 20),
 
-          _buildSectionTitle('Common Audio Formats'),
-          Row(
+          _buildSectionTitle('Common Formats'),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
             children: [
               _buildFormatChip('MP3'),
               _buildFormatChip('WAV'),
               _buildFormatChip('AAC'),
-              _buildFormatChip('OGG'),
-              _buildFormatChip('FLAC'),
             ],
-          ),
-
-          const SizedBox(height: 20),
-
-          _buildInfoCard(
-            icon: Icons.info_outline,
-            title: 'Audio Quality',
-            content: 'MP3 offers good quality with small file sizes, while WAV provides uncompressed audio for professional use.',
-            color: Colors.purple.shade700,
           ),
         ],
       ),
@@ -249,52 +220,33 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
           const SizedBox(height: 20),
 
           const HelpHint(
-            message: '📹 Press play to watch the video demonstration',
+            message: '📹 Press play to watch video',
             icon: Icons.play_circle,
           ),
 
-          // Video Player
-          VideoPlayerWidget(
-            videoPath: 'assets/videos/sample.mp4',
+          // Video Player - Fixed with constraints
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.4,
+            ),
+            child: VideoPlayerWidget(
+              videoPath: 'assets/videos/sample.mp4',
+            ),
           ),
 
           const SizedBox(height: 20),
 
           _buildSectionTitle('About Video'),
           _buildContentText(
-              'Video is a sequence of images (frames) displayed rapidly to create the illusion of motion. '
-                  'It combines visual and audio elements to deliver rich multimedia content.'
+              'Video combines moving images with audio to deliver rich multimedia content.'
           ),
 
           const SizedBox(height: 20),
 
           _buildSectionTitle('Video Characteristics'),
           _buildBulletPoint('Frame Rate - Typically 24, 30, or 60 fps'),
-          _buildBulletPoint('Resolution - Quality measured in pixels (HD, 4K)'),
-          _buildBulletPoint('Codec - Compression algorithm (H.264, VP9)'),
-          _buildBulletPoint('Bitrate - Data transmission rate'),
-
-          const SizedBox(height: 20),
-
-          _buildSectionTitle('Common Video Formats'),
-          Row(
-            children: [
-              _buildFormatChip('MP4'),
-              _buildFormatChip('AVI'),
-              _buildFormatChip('MOV'),
-              _buildFormatChip('MKV'),
-              _buildFormatChip('WebM'),
-            ],
-          ),
-
-          const SizedBox(height: 20),
-
-          _buildInfoCard(
-            icon: Icons.video_library,
-            title: 'Video Usage',
-            content: 'MP4 is the most widely supported format, ideal for web and mobile applications.',
-            color: Colors.red.shade700,
-          ),
+          _buildBulletPoint('Resolution - HD, 4K quality'),
+          _buildBulletPoint('Codec - H.264, VP9 compression'),
         ],
       ),
     );
@@ -315,7 +267,7 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
           const SizedBox(height: 20),
 
           const HelpHint(
-            message: '✨ Watch the shapes below animate automatically',
+            message: '✨ Watch the shape animate automatically',
             icon: Icons.animation,
           ),
 
@@ -354,35 +306,15 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
 
           _buildSectionTitle('What is Animation?'),
           _buildContentText(
-              'Animation is the illusion of motion created by displaying a sequence of images or frames. '
-                  'It brings static elements to life and enhances user engagement through dynamic visual content.'
+              'Animation creates the illusion of motion through sequential images.'
           ),
 
           const SizedBox(height: 20),
 
-          _buildSectionTitle('Types of Animation'),
-          _buildBulletPoint('2D Animation - Flat, traditional animation'),
-          _buildBulletPoint('3D Animation - Three-dimensional computer graphics'),
-          _buildBulletPoint('Motion Graphics - Animated graphic design'),
-          _buildBulletPoint('Stop Motion - Frame-by-frame photography'),
-          _buildBulletPoint('UI Animation - Interactive interface transitions'),
-
-          const SizedBox(height: 20),
-
-          _buildSectionTitle('Animation Principles'),
-          _buildBulletPoint('Timing and Spacing - Controls speed and rhythm'),
-          _buildBulletPoint('Ease In/Ease Out - Natural acceleration'),
-          _buildBulletPoint('Anticipation - Prepares viewer for action'),
-          _buildBulletPoint('Follow-through - Continues motion naturally'),
-
-          const SizedBox(height: 20),
-
-          _buildInfoCard(
-            icon: Icons.speed,
-            title: 'Performance Tip',
-            content: 'Smooth animations run at 60 frames per second (60fps) for the best user experience.',
-            color: Colors.orange.shade700,
-          ),
+          _buildSectionTitle('Animation Types'),
+          _buildBulletPoint('2D Animation - Flat animation'),
+          _buildBulletPoint('3D Animation - Three-dimensional'),
+          _buildBulletPoint('Motion Graphics - Animated design'),
         ],
       ),
     );
@@ -403,16 +335,36 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
           const SizedBox(height: 20),
 
           const HelpHint(
-            message: '🎨 Tap anywhere on the interactive area below to create colorful graphics!',
+            message: '🎨 Tap anywhere on the interactive area to create graphics!',
             icon: Icons.touch_app,
           ),
 
-          // Interactive Graphics Demo
-          const InteractiveGraphicsDemo(),
+          // Interactive Graphics Demo - Fixed height
+          ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxHeight: 300,
+            ),
+            child: const InteractiveGraphicsDemo(),
+          ),
 
           const SizedBox(height: 20),
 
-          // Graphics Types Demo
+          // Image Gallery
+          _buildSectionTitle('Image Examples'),
+          SizedBox(
+            height: 120,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                _buildImageCard('multimedia.png'),
+                _buildImageCard('audio.png'),
+                _buildImageCard('video.png'),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
           _buildSectionTitle('Graphics Types'),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -425,44 +377,60 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
 
           const SizedBox(height: 20),
 
-          _buildSectionTitle('About Graphics'),
-          _buildContentText(
-              'Graphics are visual elements including images, illustrations, icons, and diagrams. '
-                  'They communicate information visually and enhance aesthetic appeal.'
-          ),
-
-          const SizedBox(height: 20),
-
-          _buildSectionTitle('Graphics Categories'),
-          _buildBulletPoint('Raster Graphics - Pixel-based images (JPEG, PNG)'),
-          _buildBulletPoint('Vector Graphics - Path-based scalable graphics (SVG)'),
-          _buildBulletPoint('3D Graphics - Three-dimensional models and renders'),
-          _buildBulletPoint('Infographics - Visual data representation'),
-
-          const SizedBox(height: 20),
-
-          _buildSectionTitle('Common Image Formats'),
+          _buildSectionTitle('Common Formats'),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: [
               _buildFormatChip('JPEG'),
               _buildFormatChip('PNG'),
-              _buildFormatChip('GIF'),
               _buildFormatChip('SVG'),
-              _buildFormatChip('WebP'),
             ],
           ),
+        ],
+      ),
+    );
+  }
 
-          const SizedBox(height: 20),
-
-          _buildInfoCard(
-            icon: Icons.image_aspect_ratio,
-            title: 'Format Guide',
-            content: 'Use JPEG for photos, PNG for transparency, SVG for scalable icons, and GIF for simple animations.',
-            color: Colors.teal.shade700,
+  Widget _buildImageCard(String imageName) {
+    return Container(
+      width: 150,
+      margin: const EdgeInsets.only(right: 12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
           ),
         ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Image.asset(
+          'assets/images/$imageName',
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return Container(
+              color: Colors.grey.shade200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.image, size: 40, color: Colors.grey.shade400),
+                  const SizedBox(height: 8),
+                  Text(
+                    imageName,
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Colors.grey.shade600,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -471,21 +439,21 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
     return Column(
       children: [
         Container(
-          width: 80,
-          height: 80,
+          width: 70,
+          height: 70,
           decoration: BoxDecoration(
             color: color.withOpacity(0.2),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(color: color, width: 2),
           ),
-          child: Icon(icon, size: 40, color: color),
+          child: Icon(icon, size: 35, color: color),
         ),
         const SizedBox(height: 8),
         Text(
           label,
           style: const TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: 14,
+            fontSize: 13,
           ),
         ),
       ],
@@ -549,7 +517,7 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
 
   Widget _buildFormatChip(String format) {
     return Chip(
-      label: Text(format),
+      label: Text(format, style: const TextStyle(fontSize: 12)),
       backgroundColor: Colors.grey.shade200,
       padding: const EdgeInsets.symmetric(horizontal: 8),
     );
@@ -577,58 +545,8 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
           const SizedBox(height: 10),
           ...examples.map((example) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Text(
-              example,
-              style: const TextStyle(fontSize: 15),
-            ),
+            child: Text(example, style: const TextStyle(fontSize: 15)),
           )),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildInfoCard({
-    required IconData icon,
-    required String title,
-    required String content,
-    required Color color,
-  }) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withOpacity(0.3)),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(icon, color: color, size: 28),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: color,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  content,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.black87,
-                    height: 1.4,
-                  ),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

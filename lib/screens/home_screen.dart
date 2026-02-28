@@ -3,7 +3,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'intro_screen.dart';
 import 'elements_screen.dart';
 import 'demo_screen.dart';
-
+import 'walkthrough_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -92,6 +92,21 @@ class HomeScreen extends StatelessWidget {
                 child: ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   children: [
+                    // Retake Tour Card
+                    _buildNavigationCard(
+                      context,
+                      icon: Icons.replay,
+                      title: '🎯 Retake Guided Tour',
+                      description: 'Experience the auto-playing multimedia walkthrough again',
+                      color: Colors.deepPurple,
+                      onTap: () => Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const WalkthroughScreen()),
+                      ),
+                    ),
+
+                    const SizedBox(height: 16),
+
                     _buildNavigationCard(
                       context,
                       icon: Icons.info_outline,
@@ -131,9 +146,6 @@ class HomeScreen extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => const DemoScreen()),
                       ),
                     ),
-
-                    const SizedBox(height: 30),
-                    const SizedBox(height: 16),
 
                     const SizedBox(height: 30),
                   ],

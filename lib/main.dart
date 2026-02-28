@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'screens/onboarding_screen.dart';
+import 'screens/walkthrough_screen.dart';
 
 void main() {
   runApp(const MultimediaLearningApp());
@@ -37,7 +37,7 @@ class MultimediaLearningApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const OnboardingScreen(),
+      home: const WalkthroughScreen(),
     );
   }
 }
