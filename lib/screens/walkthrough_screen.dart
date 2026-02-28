@@ -67,7 +67,7 @@ class _WalkthroughScreenState extends State<WalkthroughScreen>
     ),
     WalkthroughStep(
       title: 'Element 5:\nVideo',
-      subtitle: 'Moving pictures with sound',
+      subtitle: 'Moving pictures',
       icon: Icons.videocam,
       color: Color(0xFFD32F2F),
       type: StepType.video,
