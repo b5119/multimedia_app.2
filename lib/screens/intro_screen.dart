@@ -66,6 +66,32 @@ class IntroScreen extends StatelessWidget {
                 ],
               ),
             ),
+            //
+            Container(
+              margin: const EdgeInsets.only(bottom: 16),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.blue.shade50,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.blue.shade200),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.headphones, color: Colors.blue.shade700, size: 20),
+                  const SizedBox(width: 12),
+                  const Expanded(
+                    child: Text(
+                      '🎧 Press play to hear the introduction',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Color(0xFF1565C0),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
             // Audio Player
             Padding(

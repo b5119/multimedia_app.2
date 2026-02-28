@@ -46,35 +46,61 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
           children: [
             // Header
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
                     const Color(0xFFF57C00),
-                    const Color(0xFFF57C00).withOpacity(0.7),
+                    const Color(0xFFF57C00).withOpacity(0.8),
                   ],
                 ),
               ),
               child: Column(
                 children: [
-                  const Icon(Icons.touch_app, size: 60, color: Colors.white),
-                  const SizedBox(height: 10),
+                  const Icon(Icons.auto_awesome, size: 60, color: Colors.white),
+                  const SizedBox(height: 12),
                   const Text(
-                    'Experience All Elements Together',
+                    'All Elements Combined',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'Interact with text, audio, graphics, and animations',
+                    'Experience text, audio, graphics, and animations working together',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.white70,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Instructions Panel
+            Container(
+              margin: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.blue.shade50,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.blue.shade200),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.info_outline, color: Colors.blue.shade700),
+                  const SizedBox(width: 12),
+                  const Expanded(
+                    child: Text(
+                      'Interact with each element below to see multimedia in action!',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
@@ -86,10 +112,12 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Audio Section
+                  // Element 1: Audio
                   _buildDemoCard(
+                    number: '1',
                     icon: Icons.audiotrack,
                     title: 'Audio Element',
+                    subtitle: 'Press play to hear narration',
                     color: Colors.purple,
                     child: AudioPlayerWidget(
                       audioPath: 'assets/audio/animation.mp3',
@@ -99,18 +127,24 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
 
                   const SizedBox(height: 20),
 
-                  // Animation Section
+                  // Element 2: Animation
                   _buildDemoCard(
+                    number: '2',
                     icon: Icons.animation,
                     title: 'Animation Element',
+                    subtitle: 'Watch the shapes animate automatically',
                     color: Colors.orange,
                     child: Column(
                       children: [
                         const SizedBox(height: 10),
 
-                        // Rotating Animation
-                        SizedBox(
+                        Container(
                           height: 150,
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -148,8 +182,8 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
                                     child: Container(
                                       width: 80,
                                       height: 80,
-                                      decoration: BoxDecoration(
-                                        gradient: const LinearGradient(
+                                      decoration: const BoxDecoration(
+                                        gradient: LinearGradient(
                                           colors: [Colors.orange, Colors.red],
                                         ),
                                         shape: BoxShape.circle,
@@ -168,11 +202,11 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
                         ),
 
                         const SizedBox(height: 10),
-                        const Text(
-                          'Continuous CSS-like animations',
+                        Text(
+                          'Continuous 60fps animations',
                           style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black54,
+                            fontSize: 13,
+                            color: Colors.grey.shade600,
                           ),
                         ),
                       ],
@@ -181,10 +215,12 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
 
                   const SizedBox(height: 20),
 
-                  // Graphics & Interactive Section
+                  // Element 3: Graphics & Interaction
                   _buildDemoCard(
+                    number: '3',
                     icon: Icons.palette,
-                    title: 'Graphics & Interaction',
+                    title: 'Interactive Graphics',
+                    subtitle: 'Tap the icons below to see effects',
                     color: Colors.teal,
                     child: Column(
                       children: [
@@ -205,11 +241,26 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
                         ),
 
                         const SizedBox(height: 15),
-                        const Text(
-                          'Tap icons to see interactive effects',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black54,
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.teal.shade50,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.touch_app, size: 16, color: Colors.teal.shade700),
+                              const SizedBox(width: 6),
+                              Text(
+                                'Tap any icon above',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.teal.shade900,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -218,10 +269,12 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
 
                   const SizedBox(height: 20),
 
-                  // Text Animation Section
+                  // Element 4: Text Animation
                   _buildDemoCard(
+                    number: '4',
                     icon: Icons.text_fields,
                     title: 'Animated Text',
+                    subtitle: 'Text with motion and styling',
                     color: Colors.indigo,
                     child: Column(
                       children: [
@@ -234,13 +287,14 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
                             return Opacity(
                               opacity: value,
                               child: Transform.translate(
-                                offset: Offset(0, 50 * (1 - value)),
+                                offset: Offset(0, 30 * (1 - value)),
                                 child: const Text(
-                                  'Multimedia Integration',
+                                  'Multimedia\nIntegration',
                                   style: TextStyle(
-                                    fontSize: 24,
+                                    fontSize: 28,
                                     fontWeight: FontWeight.bold,
                                     color: Color(0xFF1A237E),
+                                    height: 1.2,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -254,21 +308,40 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
                         Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: Colors.indigo.shade50,
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.indigo.shade50,
+                                Colors.blue.shade50,
+                              ],
+                            ),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: const Text(
-                            'This demo combines:\n'
-                                '✓ Text content\n'
-                                '✓ Audio playback\n'
-                                '✓ Vector graphics (icons)\n'
-                                '✓ CSS animations\n'
-                                '✓ User interaction',
-                            style: TextStyle(
-                              fontSize: 15,
-                              height: 1.8,
-                              color: Colors.black87,
-                            ),
+                          child: Column(
+                            children: [
+                              const Icon(
+                                Icons.check_circle,
+                                color: Colors.green,
+                                size: 32,
+                              ),
+                              const SizedBox(height: 12),
+                              const Text(
+                                'Complete Multimedia Stack',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                '✓ Text • ✓ Audio • ✓ Graphics\n✓ Animation • ✓ Video',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  height: 1.8,
+                                  color: Colors.grey.shade700,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -277,46 +350,65 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
 
                   const SizedBox(height: 20),
 
-                  // Call to Action
+                  // Success Card
                   Container(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Colors.blue.shade700,
-                          Colors.purple.shade700,
+                          Colors.green.shade600,
+                          Colors.green.shade700,
                         ],
                       ),
                       borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.green.withOpacity(0.3),
+                          blurRadius: 20,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
                     ),
                     child: Column(
                       children: [
-                        const Icon(
-                          Icons.check_circle_outline,
-                          size: 50,
-                          color: Colors.white,
+                        Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.verified,
+                            size: 50,
+                            color: Colors.green,
+                          ),
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 16),
                         const Text(
-                          'Multimedia Complete!',
+                          'Multimedia Experience Complete!',
                           style: TextStyle(
-                            fontSize: 22,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 8),
                         const Text(
-                          'You\'ve experienced all core multimedia elements working together in a single application.',
+                          'You\'ve experienced all 5 core multimedia elements working together in harmony',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white70,
+                            height: 1.5,
                           ),
                         ),
                       ],
                     ),
                   ),
+
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
@@ -327,8 +419,10 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
   }
 
   Widget _buildDemoCard({
+    required String number,
     required IconData icon,
     required String title,
+    required String subtitle,
     required Color color,
     required Widget child,
   }) {
@@ -351,14 +445,47 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
             ),
             child: Row(
               children: [
+                Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text(
+                      number,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: color,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
                 Icon(icon, color: Colors.white, size: 28),
                 const SizedBox(width: 12),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        subtitle,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -378,9 +505,19 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
       onTap: () {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Tapped ${icon.toString().split('.').last}!'),
-            duration: const Duration(milliseconds: 800),
+            content: Row(
+              children: [
+                Icon(icon, color: Colors.white, size: 20),
+                const SizedBox(width: 12),
+                Text('Tapped ${icon.toString().split('.').last}!'),
+              ],
+            ),
+            duration: const Duration(milliseconds: 1000),
             behavior: SnackBarBehavior.floating,
+            backgroundColor: color,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
         );
       },

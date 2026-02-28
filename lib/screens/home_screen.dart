@@ -3,7 +3,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'intro_screen.dart';
 import 'elements_screen.dart';
 import 'demo_screen.dart';
-import 'audio_test_screen.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -134,18 +134,6 @@ class HomeScreen extends StatelessWidget {
 
                     const SizedBox(height: 30),
                     const SizedBox(height: 16),
-
-                    _buildNavigationCard(
-                      context,
-                      icon: Icons.bug_report,
-                      title: '🔊 Audio Test (Debug)',
-                      description: 'Test if audio system works',
-                      color: Colors.purple,
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const AudioTestScreen()),
-                      ),
-                    ),
 
                     const SizedBox(height: 30),
                   ],
