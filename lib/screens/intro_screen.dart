@@ -35,7 +35,7 @@ class IntroScreen extends StatelessWidget {
                     child: Opacity(
                       opacity: 0.3,
                       child: Image.asset(
-                        'assets/images/multimedia.png',
+                        'assets/images/multimedia.jpg',
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) => Container(),
                       ),
