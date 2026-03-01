@@ -204,7 +204,6 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
       ),
     );
   }
-
   Widget _buildVideoTab() {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
@@ -224,11 +223,9 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
             icon: Icons.play_circle,
           ),
 
-          // Video Player - Fixed with constraints
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height * 0.4,
-            ),
+          // Video Player - FIXED OVERFLOW
+          SizedBox(
+            height: 250, // Fixed height to prevent overflow
             child: VideoPlayerWidget(
               videoPath: 'assets/videos/sample.mp4',
             ),
@@ -244,9 +241,23 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
           const SizedBox(height: 20),
 
           _buildSectionTitle('Video Characteristics'),
-          _buildBulletPoint('Frame Rate - Typically 24, 30, or 60 fps'),
+          _buildBulletPoint('Frame Rate - 24, 30, or 60 fps'),
           _buildBulletPoint('Resolution - HD, 4K quality'),
           _buildBulletPoint('Codec - H.264, VP9 compression'),
+
+          const SizedBox(height: 20),
+
+          _buildSectionTitle('Common Formats'),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              _buildFormatChip('MP4'),
+              _buildFormatChip('AVI'),
+              _buildFormatChip('MOV'),
+              _buildFormatChip('MKV'),
+            ],
+          ),
         ],
       ),
     );
@@ -356,9 +367,9 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                _buildImageCard('multimedia.png'),
-                _buildImageCard('audio.png'),
-                _buildImageCard('video.png'),
+                _buildImageCard('multimedia.jpg'),
+                _buildImageCard('audio.jpg'),
+                _buildImageCard('video.jpg'),
               ],
             ),
           ),
