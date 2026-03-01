@@ -9,7 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+#custom icon
+  flutter_launcher_icons: ^0.13.1
+  #icons_launcher:
+  flutter_native_splash: ^2.3.9
   # UI & Icons
   cupertino_icons: ^1.0.8
   google_fonts: ^6.1.0
@@ -34,3 +37,20 @@ flutter:
     - assets/audio/
     - assets/images/
     - assets/videos/
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#D32F2F"  # red to match your app
+  adaptive_icon_foreground: "assets/icons/app_icon.png"
+
+
+  flutter_native_splash:
+    color: "#D32F2F"          # red background
+    image: assets/icons/app_icon.png
+    color_dark: "#B71C1C"
+    image_dark: assets/icons/app_icon.png
+    android_12:
+      icon_background_color: "#D32F2F"
+      image: assets/icons/app_icon.png

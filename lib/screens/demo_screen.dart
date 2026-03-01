@@ -120,7 +120,7 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
                     subtitle: 'Press play to hear narration',
                     color: Colors.purple,
                     child: AudioPlayerWidget(
-                      audioPath: 'assets/audio/intro.mp3',
+                      audioPath: 'assets/audio/animation.mp3',
                       title: 'Interactive Demo Narration',
                     ),
                   ),
