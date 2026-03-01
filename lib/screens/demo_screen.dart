@@ -120,7 +120,7 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
                     subtitle: 'Press play to hear narration',
                     color: Colors.purple,
                     child: AudioPlayerWidget(
-                      audioPath: 'assets/audio/animation.mp3',
+                      audioPath: 'assets/audio/intro.mp3',
                       title: 'Interactive Demo Narration',
                     ),
                   ),
@@ -374,7 +374,7 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
                         Container(
                           width: 80,
                           height: 80,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.white,
                             shape: BoxShape.circle,
                           ),
@@ -448,7 +448,7 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
                 Container(
                   width: 36,
                   height: 36,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle,
                   ),
@@ -501,36 +501,139 @@ class _DemoScreenState extends State<DemoScreen> with TickerProviderStateMixin {
   }
 
   Widget _buildInteractiveIcon(IconData icon, Color color) {
-    return GestureDetector(
-      onTap: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Row(
-              children: [
-                Icon(icon, color: Colors.white, size: 20),
-                const SizedBox(width: 12),
-                Text('Tapped ${icon.toString().split('.').last}!'),
-              ],
-            ),
-            duration: const Duration(milliseconds: 1000),
-            behavior: SnackBarBehavior.floating,
-            backgroundColor: color,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        );
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: 60,
-        height: 60,
-        decoration: BoxDecoration(
-          color: color.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color, width: 2),
+    return _InteractiveIconWidget(icon: icon, color: color);
+  }
+}
+
+// Interactive Icon Widget Class
+class _InteractiveIconWidget extends StatefulWidget {
+  final IconData icon;
+  final Color color;
+
+  const _InteractiveIconWidget({
+    required this.icon,
+    required this.color,
+  });
+
+  @override
+  State<_InteractiveIconWidget> createState() => _InteractiveIconWidgetState();
+}
+
+class _InteractiveIconWidgetState extends State<_InteractiveIconWidget>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnim;
+  late Animation<double> _rotationAnim;
+  bool _isTapped = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 600),
+      vsync: this,
+    );
+
+    _scaleAnim = TweenSequence<double>([
+      TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.3), weight: 50),
+      TweenSequenceItem(tween: Tween(begin: 1.3, end: 1.0), weight: 50),
+    ]).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+
+    _rotationAnim = Tween<double>(begin: 0, end: 0.1).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _handleTap() {
+    setState(() {
+      _isTapped = true;
+    });
+
+    _controller.forward(from: 0);
+
+    // Show snackbar
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(widget.icon, color: Colors.white, size: 20),
+            const SizedBox(width: 12),
+            Text('Tapped ${widget.icon.toString().split('.').last}!'),
+          ],
         ),
-        child: Icon(icon, color: color, size: 30),
+        duration: const Duration(milliseconds: 800),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: widget.color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+
+    // Reset after animation
+    Future.delayed(const Duration(milliseconds: 600), () {
+      if (mounted) {
+        setState(() {
+          _isTapped = false;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: _handleTap,
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Transform.scale(
+            scale: _scaleAnim.value,
+            child: Transform.rotate(
+              angle: _rotationAnim.value,
+              child: Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: _isTapped
+                      ? widget.color.withOpacity(0.4)
+                      : widget.color.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: widget.color,
+                    width: _isTapped ? 3 : 2,
+                  ),
+                  boxShadow: _isTapped
+                      ? [
+                    BoxShadow(
+                      color: widget.color.withOpacity(0.5),
+                      blurRadius: 15,
+                      spreadRadius: 3,
+                    ),
+                  ]
+                      : [],
+                ),
+                child: Icon(
+                  widget.icon,
+                  color: widget.color,
+                  size: 30,
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

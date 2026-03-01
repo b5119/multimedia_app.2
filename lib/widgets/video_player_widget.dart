@@ -34,6 +34,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
         });
       }
     } catch (e) {
+      print('Video error: $e');
       if (mounted) {
         setState(() {
           _hasError = true;
@@ -50,73 +51,15 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // Get screen width for responsive sizing
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    return Container(
-      constraints: BoxConstraints(
-        maxWidth: screenWidth - 40,
-        maxHeight: 300,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Video display area
-          Container(
-            constraints: const BoxConstraints(
-              maxHeight: 200,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.black,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
-                  blurRadius: 10,
-                  offset: const Offset(0, 5),
-                ),
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: _buildVideoContent(),
-            ),
-          ),
-
-          const SizedBox(height: 12),
-
-          // Controls
-          if (_isInitialized && !_hasError) _buildControls(),
-
-          // Helpful hint
-          if (!_hasError)
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.info_outline, size: 16, color: Colors.grey.shade600),
-                  const SizedBox(width: 6),
-                  Text(
-                    'Tap play to watch video',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey.shade600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildVideoContent() {
     if (_hasError) {
       return Container(
-        height: 200,
-        color: Colors.black87,
+        height: 180,
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Colors.black87, Colors.black54],
+          ),
+          borderRadius: BorderRadius.circular(12),
+        ),
         child: const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +67,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
               Icon(Icons.videocam_off, size: 50, color: Colors.white70),
               SizedBox(height: 10),
               Text(
-                'Video not available',
+                'Video not found',
                 style: TextStyle(color: Colors.white, fontSize: 14),
               ),
               SizedBox(height: 5),
@@ -142,50 +85,56 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       );
     }
 
-    if (!_isInitialized) {
+    if (!_isInitialized || _controller == null) {
       return Container(
-        height: 200,
-        color: Colors.black87,
-        child: const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircularProgressIndicator(color: Colors.white),
-              SizedBox(height: 15),
-              Text(
-                'Loading video...',
-                style: TextStyle(color: Colors.white70, fontSize: 14),
-              ),
-            ],
+        height: 180,
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Colors.black87, Colors.black54],
           ),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: const Center(
+          child: CircularProgressIndicator(color: Colors.white),
         ),
       );
     }
 
-    return SizedBox(
-      height: 200,
-      child: FittedBox(
-        fit: BoxFit.contain,
-        child: SizedBox(
-          width: _controller!.value.size.width,
-          height: _controller!.value.size.height,
-          child: VideoPlayer(_controller!),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildControls() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade100,
-        borderRadius: BorderRadius.circular(12),
-      ),
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxHeight: 300),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Control buttons
+          // Video display
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: AspectRatio(
+              aspectRatio: _controller!.value.aspectRatio,
+              child: VideoPlayer(_controller!),
+            ),
+          ),
+
+          const SizedBox(height: 8),
+
+          // Progress indicator
+          if (_controller != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: VideoProgressIndicator(
+                _controller!,
+                allowScrubbing: true,
+                padding: EdgeInsets.zero,
+                colors: const VideoProgressColors(
+                  playedColor: Color(0xFFD32F2F),
+                  backgroundColor: Colors.grey,
+                  bufferedColor: Color(0xFFFFCDD2),
+                ),
+              ),
+            ),
+
+          const SizedBox(height: 8),
+
+          // Controls
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -205,13 +154,6 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                 decoration: BoxDecoration(
                   color: const Color(0xFFD32F2F),
                   shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFFD32F2F).withOpacity(0.3),
-                      blurRadius: 8,
-                      spreadRadius: 2,
-                    ),
-                  ],
                 ),
                 child: IconButton(
                   onPressed: () {
@@ -225,8 +167,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                     _controller!.value.isPlaying ? Icons.pause : Icons.play_arrow,
                     color: Colors.white,
                   ),
-                  iconSize: 32,
-                  tooltip: _controller!.value.isPlaying ? 'Pause' : 'Play',
+                  iconSize: 28,
                 ),
               ),
               const SizedBox(width: 8),
@@ -241,26 +182,9 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                 },
                 icon: const Icon(Icons.forward_5),
                 color: Colors.grey.shade700,
-                tooltip: 'Forward 5s',
+                tooltip: 'Forward',
               ),
             ],
-          ),
-
-          const SizedBox(height: 8),
-
-          // Progress bar with proper constraints
-          SizedBox(
-            height: 20,
-            child: VideoProgressIndicator(
-              _controller!,
-              allowScrubbing: true,
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              colors: const VideoProgressColors(
-                playedColor: Color(0xFFD32F2F),
-                backgroundColor: Colors.grey,
-                bufferedColor: Color(0xFFFFCDD2),
-              ),
-            ),
           ),
         ],
       ),

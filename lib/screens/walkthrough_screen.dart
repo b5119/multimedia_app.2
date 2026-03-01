@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'dart:math' as math;
 import 'home_screen.dart';
+import '../widgets/video_player_widget.dart';
 
 class WalkthroughScreen extends StatefulWidget {
   const WalkthroughScreen({super.key});
@@ -668,39 +669,40 @@ class _WalkthroughScreenState extends State<WalkthroughScreen>
       ),
     );
   }
-
   Widget _buildVideoContent() {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withOpacity(0.3), width: 2),
-      ),
-      child: const Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.play_circle_filled, size: 70, color: Colors.white),
-          SizedBox(height: 20),
-          Text(
-            '📹 Video Capability',
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Video Player
+        Container(
+          constraints: const BoxConstraints(
+            maxHeight: 200,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: VideoPlayerWidget(
+              videoPath: 'assets/videos/sample.mp4',
             ),
           ),
-          SizedBox(height: 10),
-          Text(
-            'Moving images with audio',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.white70,
-            ),
-            textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 16),
+        const Text(
+          '📹 Video Element',
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 8),
+        const Text(
+          'Press play to watch',
+          style: TextStyle(
+            fontSize: 13,
+            color: Colors.white70,
+          ),
+        ),
+      ],
     );
   }
 
