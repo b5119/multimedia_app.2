@@ -58,7 +58,7 @@ Currently, the app uses Material Design icons which look professional.
 Custom images would be used if you reference them in the code:
 
 ```dart
-Image.asset('assets/images/multimedia.png')
+Image.asset('assets/images/multimedia.jpg')
 ```
 
 ## Not Required
