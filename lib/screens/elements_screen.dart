@@ -215,27 +215,19 @@ class _ElementsScreenState extends State<ElementsScreen> with SingleTickerProvid
             title: 'Video in Multimedia',
             color: Color(0xFFD32F2F),
           ),
-
           const SizedBox(height: 20),
-
           const HelpHint(
             message: '📹 Press play to watch video',
             icon: Icons.play_circle,
           ),
 
-          // Video Player - FIXED OVERFLOW
+          // ── FIXED: SizedBox gives a firm height; no overflow ──────────────
           SizedBox(
-            height: 250, // Fixed height to prevent overflow
+            height: 300,
+            width: double.infinity,
             child: VideoPlayerWidget(
               videoPath: 'assets/videos/sample.mp4',
             ),
-          ),
-
-          const SizedBox(height: 20),
-
-          _buildSectionTitle('About Video'),
-          _buildContentText(
-              'Video combines moving images with audio to deliver rich multimedia content.'
           ),
 
           const SizedBox(height: 20),

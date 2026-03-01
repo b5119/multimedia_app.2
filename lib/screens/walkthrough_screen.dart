@@ -670,39 +670,11 @@ class _WalkthroughScreenState extends State<WalkthroughScreen>
     );
   }
   Widget _buildVideoContent() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        // Video Player
-        Container(
-          constraints: const BoxConstraints(
-            maxHeight: 200,
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: VideoPlayerWidget(
-              videoPath: 'assets/videos/sample.mp4',
-            ),
-          ),
-        ),
-        const SizedBox(height: 16),
-        const Text(
-          '📹 Video Element',
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 8),
-        const Text(
-          'Press play to watch',
-          style: TextStyle(
-            fontSize: 13,
-            color: Colors.white70,
-          ),
-        ),
-      ],
+    return SizedBox(
+      height: 300, // video + progress + controls all fit here
+      child: VideoPlayerWidget(
+        videoPath: 'assets/videos/sample.mp4',
+      ),
     );
   }
 
