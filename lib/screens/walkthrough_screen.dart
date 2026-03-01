@@ -515,9 +515,9 @@ class _WalkthroughScreenState extends State<WalkthroughScreen>
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
-              _buildImagePreview('multimedia.png'),
-              _buildImagePreview('audio.png'),
-              _buildImagePreview('video.png'),
+              _buildImagePreview('multimedia.jpg'),
+              _buildImagePreview('audio.jpg'),
+              _buildImagePreview('video.jpg'),
             ],
           ),
         ),
@@ -560,7 +560,6 @@ class _WalkthroughScreenState extends State<WalkthroughScreen>
       ],
     );
   }
-
   Widget _buildImagePreview(String imageName) {
     return Container(
       width: 120,
