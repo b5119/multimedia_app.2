@@ -1,432 +1,500 @@
-# Multimedia Learning Companion
+# 🎓 Multimedia Learning Companion
 
-A comprehensive Flutter Android application demonstrating the integration of all core multimedia elements: **Text**, **Audio**, **Video**, **Animation**, and **Graphics**.
+> **An interactive Flutter Android app demonstrating all 5 core multimedia elements: Text, Audio, Video, Animation, and Graphics**
 
-## 📱 Project Overview
-
-**App Name:** Multimedia Learning Companion  
-**Platform:** Android (Offline)  
-**Framework:** Flutter  
-**Purpose:** Academic demonstration of multimedia system principles
-
-### What This App Demonstrates
-
-This application showcases practical implementation of multimedia elements:
-- ✅ **Text Content** - Educational material with rich typography
-- ✅ **Audio Narration** - Offline MP3 playback with custom player
-- ✅ **Graphics** - Icons, images, and vector graphics
-- ✅ **Animations** - CSS-like animations and transitions
-- ✅ **Video** - Optional embedded video player
-- ✅ **Interactivity** - Touch gestures and user engagement
+[![Flutter](https://img.shields.io/badge/Flutter-3.0+-02569B?logo=flutter)](https://flutter.dev)
+[![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android)](https://www.android.com)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Course](https://img.shields.io/badge/Course-CIT4541-blue)](https://icu.ac.zm)
 
 ---
 
-## 🎓 Academic Description
+## 📚 About This Project
 
-The proposed system is an offline native mobile multimedia application developed using Flutter, designed to integrate core multimedia elements—text, audio, animation, graphics, and video—into a unified interactive learning environment. The application demonstrates practical implementation of multimedia system principles while ensuring usability, portability, and offline accessibility for academic presentation and evaluation.
+This is my **Multimedia Systems course assignment** developed at **ZCAS UNIVERSITY**. I'm sharing this publicly to help other students learning about multimedia systems and Flutter development.
+
+
+### What I Built
+
+A complete mobile application that demonstrates practical implementation of multimedia principles through:
+- **Guided Walkthrough** - Auto-playing tour of each multimedia element
+- **Interactive Learning** - Hands-on exploration of multimedia concepts
+- **Professional UI/UX** - Material Design 3 with smooth animations
+- **Offline Functionality** - No internet required, all assets bundled
 
 ---
 
-## 🚀 Setup Instructions
+## ✨ Features
 
-### Prerequisites
+### 🚀 Interactive Walkthrough
+- **7-step guided tour** that automatically showcases each element
+- **Auto-playing audio** when you reach the audio step
+- **Interactive graphics** - tap anywhere to create colorful effects
+- **Live animations** running at 60fps
+- **Progress tracking** showing your position (Step X of 7)
 
-1. **Install Flutter SDK**
-   - Download from: https://flutter.dev/docs/get-started/install
-   - Verify installation: `flutter doctor`
+### Detailed Element Screens
+Each of the 5 multimedia elements has a dedicated tab with:
+1. **Text** - Typography, formatting, and text styles
+2. **Audio** - MP3 playback with custom controls
+3. **Video** - Video player with play/pause/seek controls
+4. **Animation** - Rotation, scaling, fading effects
+5. **Graphics** - Images, icons, interactive tap effects
 
-2. **Install Android Studio**
-   - Download from: https://developer.android.com/studio
-   - Install Android SDK and emulator
+### Interactive Demo
+- All 5 elements working together in one screen
+- Interactive icon animations (tap to see effects)
+- Continuous background animations
+- Audio narration playback
 
-3. **Install Required Tools**
-   ```bash
-   # Check if Flutter is properly installed
-   flutter doctor -v
-   
-   # Ensure all dependencies are met
-   ```
+###  User-Friendly Design
+- **Help hints** on every interactive element
+- **Visual feedback** for all interactions
+- **No pixel overflow** - properly constrained layouts
+- **Smooth transitions** between screens
 
-### Installation Steps
+---
 
-1. **Extract the project folder** to your desired location
+## 🛠️ Tech Stack
 
-2. **Navigate to project directory**
-   ```bash
-   cd multimedia_app
-   ```
-
-3. **Install dependencies**
-   ```bash
-   flutter pub get
-   ```
-
-4. **Add Audio Files** (IMPORTANT!)
-   - Record audio narration using your phone or computer
-   - Convert to MP3 format
-   - Place files in `assets/audio/` with these exact names:
-     - `intro.mp3` - Introduction narration
-     - `text.mp3` - Text element narration
-     - `animation.mp3` - Animation demo narration
-   
-   **Recording Tips:**
-   - Use your phone's voice recorder
-   - Keep each narration 20-40 seconds
-   - Explain the respective multimedia element
-   - Save as MP3 format
-
-5. **Add Images** (Optional but recommended)
-   - Place any PNG/JPG images in `assets/images/`
-   - Suggested images:
-     - `multimedia.png` - Multimedia concept graphic
-     - `audio.png` - Audio icon/graphic
-     - `video.png` - Video icon/graphic
-
-6. **Add Video** (Optional)
-   - Place MP4 video file in `assets/videos/`
-   - Recommended: `multimedia_intro.mp4`
-   - Keep file size small (< 10MB)
+| Component | Technology | Version |
+|-----------|-----------|---------|
+| Framework | Flutter | 3.x |
+| Language | Dart | 3.9.0+ |
+| Platform | Android | API 21+ |
+| Audio | just_audio | 0.9.36 |
+| Video | video_player | 2.8.1 |
+| Fonts | google_fonts | 6.1.0 |
+| Animations | animated_text_kit | 4.2.2 |
 
 ---
 
 ## 📁 Project Structure
-
 ```
 multimedia_app/
+├── lib/
+│   ├── main.dart                           # App entry point
+│   ├── screens/
+│   │   ├── walkthrough_screen.dart         # 7-step guided tour (NEW!)
+│   │   ├── home_screen.dart                # Navigation hub
+│   │   ├── intro_screen.dart               # Multimedia introduction
+│   │   ├── elements_screen.dart            # 5 tabbed sections
+│   │   └── demo_screen.dart                # All elements combined
+│   └── widgets/
+│       ├── audio_player_widget.dart        # Custom audio player
+│       ├── video_player_widget.dart        # Custom video player
+│       ├── animated_card.dart              # Animated UI cards
+│       └── interactive_graphics_demo.dart  # Tap-to-create graphics
 │
 ├── assets/
-│   ├── audio/              # Audio files (MP3)
+│   ├── audio/                              # MP3 narration files
 │   │   ├── intro.mp3
 │   │   ├── text.mp3
 │   │   └── animation.mp3
-│   ├── images/             # Image files (PNG, JPG)
-│   │   ├── multimedia.png
-│   │   ├── audio.png
-│   │   └── video.png
-│   └── videos/             # Video files (MP4)
-│       └── multimedia_intro.mp4
+│   ├── images/                             # JPG/PNG graphics
+│   │   ├── multimedia.jpg
+│   │   ├── audio.jpg
+│   │   └── video.jpg
+│   ├── videos/                             # MP4 video files
+│   │   └── sample.mp4
+│   └── icons/                              # App icon & splash
+│       ├── icon.png
+│       └── launch.png
 │
-├── lib/
-│   ├── main.dart                    # App entry point
-│   ├── screens/
-│   │   ├── home_screen.dart         # Navigation hub
-│   │   ├── intro_screen.dart        # Introduction content
-│   │   ├── elements_screen.dart     # Multimedia elements
-│   │   └── demo_screen.dart         # Interactive demo
-│   └── widgets/
-│       ├── audio_player_widget.dart # Custom audio player
-│       └── animated_card.dart       # Animated UI component
-│
-├── pubspec.yaml            # Dependencies configuration
-└── README.md               # This file
+├── android/                                # Android-specific config
+├── pubspec.yaml                            # Dependencies
+└── README.md                               # This file
 ```
 
 ---
 
-## 🏃 Running the Application
+## 🚀 Getting Started
 
-### On Android Emulator
+### Prerequisites
 
-1. **Start Android Emulator**
-   ```bash
-   # List available emulators
-   flutter emulators
+1. **Flutter SDK** - [Download here](https://flutter.dev/docs/get-started/install)
+```bash
+   flutter --version  # Should be 3.0+
+```
+
+2. **Android Studio** or **VS Code** with Flutter extensions
+
+3. **Android Device** or **Emulator** (API Level 21+)
+
+### Installation
+
+1. **Clone the repository**
+```bash
+   git clone https://github.com/yourusername/multimedia-learning-companion.git
+   cd multimedia-learning-companion
+```
+
+2. **Install dependencies**
+```bash
+   flutter pub get
+```
+
+3. **Add your media files** (Important!)
    
-   # Launch specific emulator
-   flutter emulators --launch <emulator_id>
-   ```
-
-2. **Run the app**
-   ```bash
-   flutter run
-   ```
-
-### On Physical Android Device
-
-1. **Enable Developer Options** on your Android phone
-   - Settings → About Phone → Tap "Build Number" 7 times
-
-2. **Enable USB Debugging**
-   - Settings → Developer Options → USB Debugging
-
-3. **Connect device** via USB cable
+   **Audio Files** (Required):
+   - Record 3 short audio clips (20-40 seconds each)
+   - Convert to MP3 format
+   - Place in `assets/audio/`:
+     - `intro.mp3` - Introduction to multimedia
+     - `text.mp3` - Text element explanation
+     - `animation.mp3` - Animation narration
+   
+   **Images** (Optional):
+   - Add JPG/PNG images to `assets/images/`
+   - Suggested: `multimedia.jpg`, `audio.jpg`, `video.jpg`
+   
+   **Video** (Optional):
+   - Add MP4 video to `assets/videos/sample.mp4`
+   - Keep file size under 10MB
 
 4. **Run the app**
-   ```bash
-   # Check if device is connected
-   flutter devices
-   
-   # Run on connected device
+```bash
+   # On emulator
    flutter run
-   ```
+   
+   # On connected device
+   flutter run -d <device_id>
+```
 
----
-
-## 📦 Building APK for Presentation
-
-### Build Debug APK (Quick Testing)
+5. **Build APK** (for sharing)
 ```bash
-flutter build apk --debug
+   # Debug APK
+   flutter build apk --debug
+   
+   # Release APK
+   flutter build apk --release
 ```
-Output: `build/app/outputs/flutter-apk/app-debug.apk`
 
-### Build Release APK (Final Presentation)
+---
+
+## 🎮 How to Use
+
+### First Time User Experience
+
+1. **App Opens** → Walkthrough screen appears automatically
+2. **Step through the guide** - Press "Next" to advance
+3. **Audio auto-plays** on Step 3 (Audio demonstration)
+4. **Tap the graphics area** on Step 4 to create effects
+5. **Watch animations** run automatically on Step 5
+6. **Press "Finish"** → Land on Home Screen
+
+### Navigation
+
+From Home Screen, you can:
+- **Retake Guided Tour** - Experience the walkthrough again
+- **Introduction to Multimedia** - Deep dive into concepts
+- **Elements of Multimedia** - Explore each element in detail
+- **Interactive Demo** - See all elements working together
+
+---
+
+## 🎓 Educational Value
+
+### What You'll Learn
+
+This project demonstrates:
+
+✅ **Flutter Development**
+- Widget composition and state management
+- Custom widget creation
+- Animation controllers and transitions
+- Asset management and bundling
+
+✅ **Multimedia Principles**
+- Integration of text, audio, video, animation, graphics
+- User interaction and feedback design
+- Performance optimization for media
+- Offline content delivery
+
+✅ **Mobile App Design**
+- Material Design 3 guidelines
+- HCI (Human-Computer Interaction) principles
+- Progressive disclosure and user guidance
+- Responsive layouts and constraint management
+
+✅ **Software Engineering**
+- Modular architecture
+- Code reusability
+- Error handling
+- Memory management
+
+---
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**Audio not playing?**
 ```bash
-flutter build apk --release
-```
-Output: `build/app/outputs/flutter-apk/app-release.apk`
+# Make sure audio files exist
+ls assets/audio/
+# Should show: intro.mp3, text.mp3, animation.mp3
 
-### Install APK on Device
-```bash
-# After building
-flutter install
-```
-
-Or manually:
-1. Copy APK to phone
-2. Open file and install
-3. Allow "Install from Unknown Sources" if prompted
-
----
-
-## 🎯 App Features
-
-### Home Screen
-- Welcome animation with typewriter effect
-- Three navigation cards:
-  - Introduction to Multimedia
-  - Elements of Multimedia
-  - Interactive Demo
-
-### Introduction Screen
-- Comprehensive text content
-- Audio narration with playback controls
-- Multimedia definition and history
-- Key characteristics of multimedia
-
-### Elements Screen
-- 5 tabs covering each element:
-  1. **Text** - Typography and formatting
-  2. **Audio** - Sound types and formats
-  3. **Video** - Video characteristics
-  4. **Animation** - Animation principles
-  5. **Graphics** - Image types and uses
-- Each tab includes educational content and examples
-
-### Interactive Demo Screen
-- Live audio playback
-- Continuous animations (rotation, scaling)
-- Interactive graphics (tap to interact)
-- Text animations
-- All elements combined in one screen
-
----
-
-## 🎨 Customization
-
-### Change Color Scheme
-Edit `lib/main.dart`:
-```dart
-colorScheme: ColorScheme.fromSeed(
-  seedColor: const Color(0xFF1A237E),  // Change this color
-  brightness: Brightness.light,
-),
-```
-
-### Add More Content
-Edit screen files in `lib/screens/` to add:
-- More educational sections
-- Additional multimedia examples
-- New animations
-- Extra audio/video content
-
-### Modify Fonts
-In `lib/main.dart`, change:
-```dart
-textTheme: GoogleFonts.poppinsTextTheme(),  // Try different Google Fonts
-```
-
----
-
-## 📊 Dependencies
-
-The app uses these Flutter packages:
-
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-  google_fonts: ^6.1.0          # Custom fonts
-  audioplayers: ^5.2.1          # Audio playback
-  video_player: ^2.8.1          # Video playback
-  animated_text_kit: ^4.2.2     # Text animations
-  lottie: ^2.7.0               # Advanced animations
-```
-
----
-
-## 🐛 Troubleshooting
-
-### Audio Not Playing
-**Solution:**
-1. Ensure MP3 files are in `assets/audio/`
-2. File names must match exactly (case-sensitive)
-3. Run `flutter pub get` after adding assets
-4. Restart the app
-
-### App Not Building
-```bash
-# Clean build cache
+# Run after adding audio
 flutter clean
-
-# Get dependencies
 flutter pub get
-
-# Rebuild
 flutter run
 ```
 
-### Emulator Issues
-```bash
-# Check available emulators
-flutter emulators
+**Video overflow error?**
+- The video widget is properly constrained in `elements_screen.dart`
+- If you see overflow, make sure you're using the latest code
 
-# Create new emulator in Android Studio:
-# Tools → AVD Manager → Create Virtual Device
+**Build errors?**
+```bash
+# Nuclear clean
+flutter clean
+rm -rf build/
+flutter pub get
+flutter run
 ```
 
-### "Asset not found" Error
-1. Check `pubspec.yaml` has correct asset paths
-2. Ensure proper indentation (2 spaces)
-3. Run `flutter pub get`
-4. Restart IDE
+**App crashes on startup?**
+- Check that all asset paths in `pubspec.yaml` are correct
+- Ensure audio/image files exist in their directories
+- Run `flutter pub get` after any changes to `pubspec.yaml`
 
 ---
 
-## 📝 For Academic Presentation
+## 📸 Screenshots
 
-### Key Points to Highlight
-
-1. **Multimedia Integration**
-   - All 5 core elements present
-   - Offline functionality
-   - Professional UI/UX
-
-2. **Technical Implementation**
-   - Flutter cross-platform framework
-   - Native Android performance
-   - Efficient asset management
-
-3. **Educational Value**
-   - Self-contained learning tool
-   - Interactive demonstrations
-   - Clear content structure
-
-4. **Development Approach**
-   - Modular code architecture
-   - Reusable widgets
-   - Scalable design patterns
-
-### Demonstration Flow
-
-1. Start with **Home Screen** - Show navigation
-2. Open **Introduction** - Play audio narration
-3. Navigate to **Elements** - Explore each tab
-4. Show **Interactive Demo** - Demonstrate all features
-5. Highlight **offline capability** - Works without internet
+_Add screenshots here showing:_
+1. Walkthrough screen (Step 1)
+2. Audio playing (Step 3)
+3. Interactive graphics (Step 4)
+4. Elements screen tabs
+5. Demo screen with all elements
 
 ---
 
-## 📄 Documentation for Report
+## 🎯 Key Implementation Details
 
-### System Architecture
-- **Frontend:** Flutter (Dart language)
-- **UI Framework:** Material Design 3
-- **Storage:** Local asset bundle
-- **Audio Engine:** audioplayers package
-- **Platform:** Android 5.0+ (API level 21+)
+### Auto-Playing Audio in Walkthrough
+```dart
+// Audio automatically plays when user reaches audio step
+if (_steps[_currentStep].type == StepType.audio) {
+  Future.delayed(const Duration(milliseconds: 500), () {
+    _playAudio(_steps[_currentStep].audioPath!);
+  });
+}
+```
 
-### Multimedia Elements Breakdown
+### Interactive Graphics System
+```dart
+// Tap anywhere to create expanding colored circles
+void _addTapEffect(Offset position) {
+  setState(() {
+    _tapEffects.add(TapEffect(
+      position: position,
+      color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()),
+      time: DateTime.now(),
+    ));
+  });
+}
+```
 
-| Element | Implementation | File Type | Purpose |
-|---------|---------------|-----------|---------|
-| Text | Flutter Text widgets | N/A | Content delivery |
-| Audio | audioplayers plugin | MP3 | Narration |
-| Graphics | PNG/SVG icons | PNG, SVG | Visual aids |
-| Animation | Flutter AnimationController | N/A | Engagement |
-| Video | video_player plugin | MP4 | Demonstration |
-
----
-
-## 👨‍💻 Development Credits
-
-**Project:** Multimedia Learning Companion  
-**Framework:** Flutter 3.0+  
-**Language:** Dart  
-**Platform:** Android  
-**Type:** Educational Mobile Application
-
----
-
-## 📞 Support
-
-For issues or questions:
-1. Check Flutter documentation: https://flutter.dev/docs
-2. Review error messages carefully
-3. Ensure all dependencies are installed
-4. Verify asset file locations
+### 60fps Animations
+```dart
+// Using TickerProviderStateMixin for smooth animations
+_rotationController = AnimationController(
+  duration: const Duration(seconds: 3),
+  vsync: this,
+)..repeat();
+```
 
 ---
 
-## ✅ Pre-Presentation Checklist
+## 🤝 Contributing
 
-- [ ] Audio files added to `assets/audio/`
-- [ ] App runs on emulator/device
-- [ ] All screens accessible
-- [ ] Audio playback works
-- [ ] Animations running smoothly
-- [ ] APK built successfully
-- [ ] Tested on physical device
-- [ ] Screenshots taken for report
-- [ ] Presentation points prepared
+This is an academic project, but contributions are welcome! If you find bugs or have improvements:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/improvement`)
+3. Commit your changes (`git commit -am 'Add improvement'`)
+4. Push to the branch (`git push origin feature/improvement`)
+5. Open a Pull Request
 
 ---
 
-## 🎓 Academic Justification
+## 📝 For Students Using This Project
 
-**Why Flutter?**
-- Single codebase for multiple platforms
-- Hot reload for rapid development
-- Rich widget library
-- Native performance
-- Strong community support
+### If You're Learning Flutter
 
-**Why Offline?**
-- Demonstrates asset management
-- Works in any environment
-- No network dependency
-- Faster load times
-- Privacy-focused
+**What to focus on:**
+- How widgets are composed in `lib/screens/`
+- State management with `setState()`
+- Animation controllers in demo screen
+- Custom widget creation in `lib/widgets/`
 
-**Educational Impact:**
-- Practical implementation of theory
-- Real-world application development
-- Modern development practices
-- Industry-standard tools
+### If You're Learning Multimedia
+
+**Key concepts demonstrated:**
+- Asset bundling and management
+- Audio playback with just_audio
+- Video rendering with video_player
+- Graphics rendering and interaction
+- Animation principles (60fps, easing)
+
+### For Your Own Project
+
+Feel free to use this as a template! Just:
+1. Replace the content with your topic
+2. Update assets with your media files
+3. Customize colors and fonts
+4. Add your own features
+5. Give credit where appropriate
 
 ---
 
-## 📈 Future Enhancements
+## 🎖️ Academic Recognition
 
-Possible extensions for higher grades:
-- [ ] Quiz/assessment module
-- [ ] Progress tracking
+**Course:**Multimedia Systems  
+**Institution:**ZCAS University  
+
+This project fulfilled the requirements for demonstrating practical implementation of multimedia system principles in a mobile application environment.
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+You are free to:
+- ✅ Use this project for learning
+- ✅ Modify it for your own projects
+- ✅ Share it with others
+- ✅ Use it as a reference for your assignments
+
+Just remember to:
+- 📌 Give credit to the original project
+- 📌 Don't plagiarize - understand the code
+- 📌 Follow your university's academic integrity policies
+
+---
+
+## 🙏 Acknowledgments
+
+- **Flutter Team** - For the amazing framework
+- **Chimanga Kashale** - Course instructor and guidance
+- **ZCAS UNIVERSITY** - For providing the learning environment
+- **Open Source Community** - For packages and resources
+
+Special thanks to everyone who helped debug and improve this project!
+
+---
+
+## 💬 Contact & Support
+
+**Found this helpful?** ⭐ Star this repo!
+
+**Have questions?**
+- Open an issue on GitHub
+- Check the [Troubleshooting](#-troubleshooting) section
+- Review Flutter documentation: [flutter.dev](https://flutter.dev)
+
+**Want to share improvements?**
+- Submit a pull request
+- Share your modifications
+- Help other students learn
+
+---
+
+## 🔮 Future Improvements
+
+Ideas for extending this project:
+
+- [ ] Add quiz/assessment module
+- [ ] Implement progress tracking
 - [ ] Dark mode theme
 - [ ] Multiple language support
-- [ ] PDF export functionality
-- [ ] Screen recording feature
-- [ ] Offline video playback
+- [ ] Export to PDF functionality
+- [ ] Augmented Reality demo
+- [ ] 3D graphics integration
+- [ ] User-generated content
+- [ ] Cloud sync (optional)
+- [ ] Analytics dashboard
 
 ---
 
-**Good luck with your project presentation! 🚀**
+## 📊 Project Stats
+
+- **Lines of Code:** ~2,500+
+- **Screens:** 5 main screens
+- **Custom Widgets:** 6
+- **Dependencies:** 8 packages
+- **Multimedia Elements:** All 5 (Text, Audio, Video, Animation, Graphics)
+- **Development Time:** 2-3 weeks
+
+---
+
+## ✅ Checklist for Using This Project
+
+**Before you start:**
+- [ ] Flutter SDK installed and working
+- [ ] Android Studio or VS Code set up
+- [ ] Git installed (for cloning)
+
+**Setup:**
+- [ ] Repository cloned
+- [ ] Dependencies installed (`flutter pub get`)
+- [ ] Audio files added to `assets/audio/`
+- [ ] Images added (optional)
+- [ ] Video added (optional)
+
+**Testing:**
+- [ ] App runs on emulator
+- [ ] App runs on physical device
+- [ ] Audio playback works
+- [ ] Video playback works (if added)
+- [ ] All animations smooth
+- [ ] No overflow errors
+- [ ] Navigation works correctly
+
+**Customization:**
+- [ ] Changed colors to your preference
+- [ ] Updated content if needed
+- [ ] Added your own media files
+- [ ] Tested thoroughly
+
+**Deployment:**
+- [ ] Built APK successfully
+- [ ] Tested APK on device
+- [ ] Screenshots taken
+- [ ] Documentation complete
+
+---
+
+## 🎓 Learning Resources
+
+**New to Flutter?**
+- [Flutter Documentation](https://flutter.dev/docs)
+- [Flutter Codelabs](https://flutter.dev/docs/codelabs)
+- [Dart Language Tour](https://dart.dev/guides/language/language-tour)
+
+**Multimedia Concepts:**
+- [Multimedia Systems - Basics](https://en.wikipedia.org/wiki/Multimedia)
+- [Audio Formats Guide](https://www.audio.com/formats)
+- [Video Encoding 101](https://www.encoding.com/education/)
+
+**Flutter Packages Used:**
+- [just_audio](https://pub.dev/packages/just_audio)
+- [video_player](https://pub.dev/packages/video_player)
+- [google_fonts](https://pub.dev/packages/google_fonts)
+- [animated_text_kit](https://pub.dev/packages/animated_text_kit)
+
+---
+
+**Happy Learning! 📚✨**
+
+_If this project helped you, please consider giving it a ⭐ star!_
+
+---
+
+**Made with ❤️ for the ZCAS UNIVERSITY Multimedia Systems Class**
+
+_Last Updated: February 2025_
