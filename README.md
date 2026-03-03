@@ -353,8 +353,8 @@ Feel free to use this as a template! Just:
 
 ## 🎖️ Academic Recognition
 
-**Course:**Multimedia Systems  
-**Institution:**ZCAS University  
+**Course:** Multimedia Systems  
+**Institution:** ZCAS University  
 
 This project fulfilled the requirements for demonstrating practical implementation of multimedia system principles in a mobile application environment.
 
@@ -388,7 +388,7 @@ Special thanks to everyone who helped debug and improve this project!
 
 ---
 
-## 💬 Contact & Support
+## Contact & Support
 
 **Found this helpful?** ⭐ Star this repo!
 
